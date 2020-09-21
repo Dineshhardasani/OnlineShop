@@ -7,25 +7,27 @@
    <%- include('../includes/navigation.ejs') %>
 
     <main>
+      <div class="container" style=" max-width:550px">
         <form class="product-form" action="/admin/edit-product/<%= product._id %>" method="POST" enctype="multipart/form-data">
             <div class="form-control">
-                <label for="title">Title</label>
+                <label for="title"><b>Title</b></label>
                 <input type="text" name="title" id="title" value="<%= product.title %>">
             </div>
             <div class="form-control">
-                <label for="image">Image</label>
+                <label for="image"><b>Image</b></label>
                 <input type="file" name="image" id="image"><a href="http://localhost:3000/<%= product.imageUrl %>">current image</a>
             </div>
             <div class="form-control">
-                <label for="price">Price</label>
+                <label for="price"><b>Price</b></label>
                 <input type="number" name="price" id="price" step="0.01" value="<%= product.price %>">
             </div>
             <div class="form-control">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
+                <label for="description"><b>Description</b></label>
+                <textarea name="description" id="description" rows="5" cols="65%"><%= product.description %></textarea>
             </div>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn" type="submit">Edit Product</button>
+            <button  type="submit">Edit Product</button>
         </form>
+        </div>
     </main>
 <%- include('../includes/end.ejs') %>

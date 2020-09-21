@@ -9,21 +9,23 @@
      <div class="user-message user-message--error"><%= errorMessage %></div>
    <% } %>
     <main>
+      <div class="container" style=" max-width:550px">
         <form class="signup-form" action="/signup" method="POST" novalidate>
             <div class="form-control">
-                <label for="email">Email</label>
+                <label for="email"><b>Email</b></label>
                 <input type="text" name="email" id="email" value="<%= oldInput.email %>">
             </div>
             <div class="form-control">
-                <label for="password">Password</label>
+                <label for="password"><b>Password</b></label>
                 <input type="password" name="password" id="password" value="<%= oldInput.password %>">
             </div>
             <div class="form-control">
-                <label for="confirmPassword">Confirm Password</label>
+                <label for="confirmPassword"><b>Confirm Password</b></label>
                 <input type="password" name="confirmPassword" id="confirmPassword" value="<%= oldInput.confirmPassword %>">
             </div>
-            <button class="btn" type="submit">Signup</button>
+            <button type="submit">Signup</button>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         </form>
+        </div>
     </main>
 <%- include('../includes/end.ejs') %>

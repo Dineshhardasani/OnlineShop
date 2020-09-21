@@ -6,6 +6,7 @@
     <%- include('../includes/navigation.ejs') %>
 
     <main>
+      <div class="container">
         <% if (prods.length > 0) { %>
             <div class="grid">
                 <% for (let product of prods) { %>
@@ -21,10 +22,10 @@
                             <h2 class="product__price">$<%= product.price %></h2>
                             <p class="product__description"><%= product.description %></p>
                         </div>
-                        <div class="card__actions">
+                        <div class="form-inline">
                           <a href="/products/<%= product._id %>" class="btn">Details</a>
                           <% if (isAuthenticated) { %>
-                            <form action="/cart" method="POST">
+                            <form action="/cart" method="POST" >
                                 <input type="hidden" name="productId" value="<%= product._id %>">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                 <button class="btn">Add to Cart</button>
@@ -49,5 +50,6 @@
         <% } else { %>
             <h1>No Products Found!</h1>
         <% } %>
+        </div>
     </main>
 <%- include('../includes/end.ejs') %>

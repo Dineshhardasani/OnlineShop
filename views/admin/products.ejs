@@ -22,23 +22,13 @@
                             <h2 class="product__price">$<%= product.price %></h2>
                             <p class="product__description"><%= product.description %></p>
                         </div>
-                        <div class="card__actions">
-                          <a href="/products/<%= product._id %>" class="btn">Details</a>
-                          <% if (isAuthenticated) { %>
-                            <form action="/cart" method="POST">
-                                <input type="hidden" name="productId" value="<%= product._id %>">
-                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="btn">Add to Cart</button>
-                            </form>
-                          <% } %>
-                        </div>
-                        <div class="card__actions">
-                            <a href="/admin/edit-product/<%= product._id %>" class="btn">Edit</a>
+                        <div class="form-inline center">
+                            <a href="/admin/edit-product/<%= product._id %>" class="btn  btn-inline">Edit</a>
                                 <input type="hidden" value="<%= product._id %>" name="productId">
                             <form action="/admin/delete-product" method="POST">
                               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                               <input type="hidden" value="<%= product._id %>" name="productId">
-                              <button name="btn" type="submit">Delete</button>
+                              <button class="btn btn-inline" type="submit">Delete</button>
                             </form>
                         </div>
                     </article>

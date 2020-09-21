@@ -20,11 +20,8 @@
           </li>
         <% } %>
         <% if (isAuthenticated) { %>
-          <li>
-            <form action="/logout" method="post">
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-              <button type="Submit">Logout</button>
-            </form>
+          <li class="main-header__item">
+            <a class="<%= path === 'auth/signup' ? 'active' : '' %>" href="/logout">Logout</a>
           </li>
         <% } %>
         </ul>
