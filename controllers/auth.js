@@ -113,10 +113,10 @@ exports.postSignup=(req,res,next)=>{
     });
 };
 
-exports.postLogout = (req, res, next) => {
+exports.getLogout = (req, res, next) => {
   req.session.destroy(err=>{
     console.log(err);
-    res.redirect('/');
+    return res.redirect('/');
   });
 };
 

@@ -34,7 +34,7 @@ router.post(
   ],
   authController.postLogin);
 
-router.post('/logout',authController.postLogout);
+router.get('/logout',authController.getLogout);
 
 router.get('/signup',authController.getSignup);
 
