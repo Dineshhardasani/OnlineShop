@@ -14,11 +14,6 @@ const session=require('express-session');
 const csrf=require('csurf');
 const flash=require('connect-flash');
 const MongoDBStore=require('connect-mongodb-session')(session);
-/*app.engine('hbs',expressHbs({
-  extname: "hbs",
-  defaultLayout:"main-layout",
-  layoutsDir: "views/layouts"
-}));*/
 
 const MONGODB_URI='MONGODB_URI';
 
@@ -84,11 +79,7 @@ app.use((req,res,next)=>{
 app.use('/admin',adminData);
 app.use(shopRoutes);
 app.use(authRoutes);
-
-
-
-
-//app.use(errorController.get404);
+app.use(errorController.get404);
 mongoose
   .connect(
     MONGODB_URI
