@@ -5,20 +5,6 @@ const path=require('path');
 const PDFDocument=require('pdfkit');
 
 const ITEMS_PER_PAGE=1;
-/*const cart=require('../models/product');
-const cartItem=require('../models/cart-item');
-const Order=require('../models/order');
-exports.getProducts = (req, res, next) => {
-  Product.findAll().then(products=>{
-    res.render('shop/product-list',{
-      prods:products,
-      pageTitle:'Shop',
-      path:'/'
-    })
-  }).catch(err=>{
-    console.log(err);
-  });
-};*/
 
 exports.getProduct=(req,res,next)=>{
   const prodId=req.params.productId;
@@ -89,37 +75,6 @@ exports.postCart=(req,res,next)=>{
   }).then(result=>{
     res.redirect('/cart');
   }).catch(err=>console.log(err));
-  /*console.log(prodId);
-  let fetchedCart;
-  req.user
-    .getCart()
-    .then(cart=>{
-      fetchedCart=cart;
-      return cart.getProducts({where:{id:prodId}});
-    })
-    .then(products=>{
-      let product;
-      if(products.length>0){
-        product=products[0];
-      }
-      let newQuantity=1;
-      if(product){
-        const oldQuantity=product.cartItem.quantity;
-        newQuantity=oldQuantity+1;
-        return fetchedCart.addProduct(product,{through:{quantity:newQuantity}});
-      }
-      return Product.findOne({where:{id:prodId}})
-        .then(product=>{
-          return fetchedCart.addProduct(product,{through:{quantity:newQuantity}});
-        })
-        .catch(err=>console.log(err));
-    })
-    .then(data=>
-       res.redirect('/cart')
-    )
-    .catch(
-      err=>console.log(err)
-    );*/
 };
 
 exports.postCartDeleteProduct=(req,res,next)=>{
@@ -127,19 +82,6 @@ exports.postCartDeleteProduct=(req,res,next)=>{
   req.user
       .removeFromCart(prodId)
       .then(result=>res.redirect('/cart')).catch(err=>console.log(err));
-  /*req.user
-    .getCart()
-    .then(cart=>{
-      return cart.getProducts({where: {id:prodId}});
-    })
-    .then(products=>{
-      const product=products[0];
-      return product.cartItem.destroy();
-    })
-    .then(result=>{
-      res.redirect('/cart');
-    })
-    .catch(err=>console.log(err));*/
 }
 
 exports.postOrder=(req,res,next)=>{
@@ -168,32 +110,6 @@ exports.postOrder=(req,res,next)=>{
       res.redirect('/orders');
     })
     .catch(err=>console.log(err));
-
-
-  //req.user.addOrder().then(()=>res.redirect('/orders')).catch(err=>console.log(err));
-    /*.then(cart=>{
-      fetchedCart=cart;
-      return cart.getProducts();
-    })
-    .then(products=>{
-      return req.user.createOrder()
-      .then(order=>{
-        return order.addProducts(products.map(product=>{
-          product.orderItem={quantity:product.cartItem.quantity};
-          return product;
-        }));
-      })
-      .catch(err=>{
-          console.log(err);
-        });
-    })
-    .then(result=>{
-      return fetchedCart.setProducts(null);
-    })
-    .then(result=>{
-      res.redirect('/orders');
-    })
-    .catch(err=>console.log(err));*/
 };
 exports.getOrders = (req, res, next) => {
   Order.find({"user.userId":req.user._id}).then(orders=>{
@@ -238,19 +154,6 @@ exports.getInvoice=(req,res,next)=>{
     });
     pdfDoc.text('Total Price'+'-  &'+totalPrice);
     pdfDoc.end();
-    //fs.readFile(invoicePath,(err,data)=>{
-    //  if(err){
-    //    return next(err);
-    //  }
-    //  res.setHeader('Content-Type','application/pdf');
-    //  res.setHeader('Content-Disposition','inline; filename="'+invoiceName+'"');
-    //  res.send(data);
-    //});
-    //const file=fs.createReadStream(invoicePath);
-    //
-    //file.pipe(res);
-    //}).catch(err=>{
-    //  console.log(err);
   });
 
 }
