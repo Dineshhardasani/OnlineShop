@@ -6,50 +6,50 @@
     <%- include('../includes/navigation.ejs') %>
 
     <main>
-      <div class="container">
-        <% if (prods.length > 0) { %>
-            <div class="grid">
-                <% for (let product of prods) { %>
-                    <article class="card product-item" >
-                        <header class="card__header">
-                            <h1 class="product__title"><%= product.title %></h1>
-                        </header>
-                        <div class="card__image" width="0px" height="30">
-                            <img src="<%= product.imageUrl %>" width="100px" height="30"
-                                alt="<%= product.title %>">
-                        </div>
-                        <div class="card__content">
-                            <h2 class="product__price">$<%= product.price %></h2>
-                            <p class="product__description"><%= product.description %></p>
-                        </div>
-                        <div class="form-inline">
-                          <a href="/products/<%= product._id %>" class="btn">Details</a>
-                          <% if (isAuthenticated) { %>
-                            <form action="/cart" method="POST" >
-                                <input type="hidden" name="productId" value="<%= product._id %>">
-                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="btn">Add to Cart</button>
-                            </form>
-                          <% } %>
-                        </div>
-                    </article>
-                <% } %>
-            </div>
-            <section class="pagination">
-              <% if (currentPage!= 1 ) { %>
-                <a href="/?page=1">1</a>
-              <% } %>
-              <a href="/?page=<%= currentPage %>"><%=currentPage %></a>
-              <% if(hasNextPage){ %>
-                <a href="/?page=<%= nextPage %>"><%=nextPage %></a>
-              <% } %>
-              <% if(lastPage!=currentPage && nextPage!=lastPage) { %>
-                <a href="/?page=<%= lastPage %>"><%= lastPage %></a>
-              <% } %>
-            </section>
-        <% } else { %>
-            <h1>No Products Found!</h1>
-        <% } %>
-        </div>
+      <center>
+        <div class="container">
+          <% if (prods.length > 0) { %>
+              <div class="grid">
+                  <% for (let product of prods) { %>
+                      <article class="card product-item" >
+                          <header class="card__header">
+                              <center><h1 class="product__title"><%= product.title %></h1></center>
+                          </header>
+                          <div class="card__image" width="0px" height="300">
+                              <img src="<%= product.imageUrl %>" width="100px" height="300"
+                                  alt="<%= product.title %>">
+                          </div>
+                          <div class="card__content">
+                              <center><h2 class="product__price"><b>Price - </b>$<%= product.price %></h2>
+                              <p class="product__description"><%= product.description %></p></center>
+                          </div>
+                          <div class="form-inline">
+                            <a href="/products/<%= product._id %>" class="btn">Details</a>
+                            <% if (isAuthenticated) { %>
+                              <form action="/cart" method="POST" >
+                                  <input type="hidden" name="productId" value="<%= product._id %>">
+                                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                  <button class="btn">Add to Cart</button>
+                              </form>
+                            <% } %>
+                          </div>
+                      </article>
+                  <% } %>
+              </div>
+              <div class="col-lg-6 offset-lg-3 py-5  d-flex">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mx-auto">
+                      <li class="page-item"><% if (currentPage!= 1 ) { %> <a class="page-link" href="/?page=1">1</a><% } %></li>
+                      <li class="page-item"><a class="page-link" href="/?page=<%= currentPage %>"><%=currentPage %></a></li>
+                      <li class="page-item "><% if(hasNextPage){ %><a class="page-link" href="/?page=<%= nextPage %>"><%=nextPage %></a><% } %></li>
+                      <li class="page-item "><% if(lastPage!=currentPage && nextPage!=lastPage) { %><a class="page-link" href="/?page=<%= lastPage %>"><%= lastPage %></a><% } %>
+                   </ul>
+               </nav>
+             </div>
+          <% } else { %>
+              <h1>No Products Found!</h1>
+          <% } %>
+          </div>
+        </center>
     </main>
 <%- include('../includes/end.ejs') %>
