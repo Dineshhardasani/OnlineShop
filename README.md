@@ -1,16 +1,16 @@
 # OnlineShop
 # Setup
 
-**Installing Depencendies**
+**Installing Dependencies**
 
 Dependencies and versions are listed in the package.json "dependencies" key, and can be installed via the following command from root:
 
 ```sh
 npm install
 ```
-**Database Depencendies**
+**Database Dependendies**
 
-Replace "MONGODB_URI" in app.js file with your own ongodb Database api_key
+Replace "MONGODB_URI" in app.js file with your own Mongodb Database api_key
 
 **Starting the dev server**
 ```sh
